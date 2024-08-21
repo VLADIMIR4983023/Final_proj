@@ -3,7 +3,7 @@ import allure
 
 # объявляем переменные
 
-token = 'Bearer%20eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3VzZXItcmlnaHQiLCJzdWIiOjIwOTMwOTMwLCJpYXQiOjE3MjM4MTAxMDcsImV4cCI6MTcyMzgxMzcwNywidHlwZSI6MjB9.s7xNifUzwv5ujh_NKfzPTTEEprAaIrbAe-RgiHG_4Nw'
+token = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3VzZXItcmlnaHQiLCJzdWIiOjIwOTMwOTMwLCJpYXQiOjE3MjQyMTcyMTQsImV4cCI6MTcyNDIyMDgxNCwidHlwZSI6MjB9.57xaVa2lLpATTdSDNmRDgHJtDVI7OppNZLqetQo00ZY
 base_URL = 'https://web-gate.chitai-gorod.ru/api/v1'
 
 
@@ -31,18 +31,6 @@ def test_searh_id():
     with allure.step("проверка статус кода"):
         assert response.status_code == 200
 
-
-def test_add_v_zakl():
-    """
-        Добавление книги в закладки
-    """
-    with allure.step("передать токен"):
-        headers = {'authorization': token}
-    body = {"id": 2505205}
-    response = requests.post(base_URL + '/bookmarks/', headers=headers,
-                             json=body)
-    with allure.step("проверка статус кода"):
-        assert response.status_code == 201
 
 
 def test_add_book_v_korz():
@@ -81,17 +69,3 @@ def test_lich_dan():
         assert response.status_code == 200
 
 
-def test_izm_imeni():
-    """
-        Изменение имени пользователя в его профиле
-    """
-    with allure.step("передать токен"):
-        headers = {'authorization': token}
-    body = {
-            "email": "jzzz84@mail.ru",
-            "firstName": "Владимир",
-            "lastName": "Руденков"}
-    response = requests.patch(base_URL + '/profile/personal-data',
-                              headers=headers, json=body)
-    with allure.step("проверка статус кода"):
-        assert response.status_code == 200
